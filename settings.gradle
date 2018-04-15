@@ -1,0 +1,4 @@
+include ':app', ':puzzlescanner', ':puzzlesolver', ':tess-two'
+include ':openCVLibrary310-1'
+
+include ':openCVLibrary310-1'
