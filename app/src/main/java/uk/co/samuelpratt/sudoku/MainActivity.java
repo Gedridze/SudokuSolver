@@ -13,19 +13,28 @@ import uk.co.samuelpratt.sudoku.puzzlesolver.Solver;
 public class MainActivity extends AppCompatActivity {
 
     private Puzzle puzzle;
+    private sudokuGrid sudok;
+    private Integer [][] values;
 
     public void updatePuzzle(Puzzle puzzle) {
         this.puzzle = puzzle;
-        GridView gridView = (GridView) findViewById(R.id.gridView1);
-        PuzzleAdaptor puzzleAdapter = new PuzzleAdaptor(this, this.puzzle);
-        gridView.setAdapter(puzzleAdapter);
+        if(puzzle == null)
+            sudok.generateNumbers();
+        else {
+            values = puzzle.fillValues();
+            sudok.fillGrid(values);
+            sudok.invalidate();
+        }
+       // GridView gridView = (GridView) findViewById(R.id.gridView1);
+        //PuzzleAdaptor puzzleAdapter = new PuzzleAdaptor(this, this.puzzle);
+        //gridView.setAdapter(puzzleAdapter);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        sudok = (sudokuGrid) findViewById(R.id.sudoku_Grid);
         initPuzzleOrGetFromExtras();
 
         updatePuzzle(puzzle);
@@ -36,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
         if (bundle != null && bundle.get("Puzzle") != null) {
             puzzle = new Puzzle((Integer[][]) bundle.get("Puzzle"));
         } else {
-            puzzle = new Puzzle();
+            puzzle = null;
         }
+
     }
 
     public void TakeAPicture(View v) throws Exception {

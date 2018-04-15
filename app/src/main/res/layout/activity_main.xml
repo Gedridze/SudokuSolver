@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,34 +7,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical"
+    android:background="@color/background"
     tools:context="com.sudoku.MainActivity">
 
-    <GridView
+    <!--<GridView
         android:id="@+id/gridView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="9"
 
-        ></GridView>
+        ></GridView> -->
+
+    <uk.co.samuelpratt.sudoku.sudokuGrid
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sudoku_Grid"/>
 
 
     <Button
         android:id="@+id/TakeAPictureButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:onClick="TakeAPicture"
         android:text="Take a picture" />
 
     <Button
         android:id="@+id/SolvePuzzleButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:onClick="SolvePuzzle"
         android:text="Solve Puzzle" />
-</RelativeLayout>
+</LinearLayout>

@@ -29,6 +29,10 @@ public class Puzzle {
         }
     }
 
+    public Integer[][] fillValues(){
+        return Numbers;
+    }
+
     private void initNumbers() {
         this.Numbers = new Integer[SIZE][SIZE];
     }

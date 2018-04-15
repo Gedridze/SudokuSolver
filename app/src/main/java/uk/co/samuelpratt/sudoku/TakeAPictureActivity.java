@@ -16,6 +16,8 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.ImageView;
 
+import org.opencv.core.Mat;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -77,10 +79,15 @@ public class TakeAPictureActivity extends Activity{
         try {
             Bitmap imageBitmap = getCameraImageFromStorage();
             setImage(imageBitmap);
-
             ImageView imageView = (ImageView)findViewById(R.id.PreviewImageView);
             PuzzleScanner puzzleScanner = new PuzzleScanner(imageBitmap, this.getApplicationContext());
-            String[] methodChain = new String[]{"getThreshold", "getLargestBlob", "getHoughLines", "getOutLine", "extractPuzzle"};
+           // String[] methodChain = new String[]{"getThreshold", "getLargestBlob", "getHoughLines", "getOutLine", "extractPuzzle"};
+            String[] methodChain = new String[] {""};
+            puzzleScanner.getThreshold();
+            puzzleScanner.getLargestBlob();
+            puzzleScanner.getHoughLines();
+            puzzleScanner.getOutLine();
+            Bitmap btmp = puzzleScanner.extractPuzzle();
             UpdateImageTask updateImageTask = new UpdateImageTask(imageView, puzzleScanner, methodChain, this);
             updateImageTask.execute();
 
@@ -88,6 +95,7 @@ public class TakeAPictureActivity extends Activity{
             Log.e(null, "Error extracting puzzle", ex);
         }
     }
+
 
     private void setImage(Bitmap imageBitmap) throws Exception {
         ImageView imageView = (ImageView) findViewById(R.id.PreviewImageView);
