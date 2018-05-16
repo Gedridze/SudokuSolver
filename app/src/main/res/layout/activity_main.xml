@@ -10,7 +10,7 @@
     android:layout_centerHorizontal="true"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.sudoku.MainActivity">
+    tools:context="com.sudsoku.MainActivity">
 
     <!--<GridView
         android:id="@+id/gridView1"
@@ -20,7 +20,7 @@
 
         ></GridView> -->
 
-    <uk.co.samuelpratt.sudoku.sudokuGrid
+    <uk.co.solveriai.sudoku.sudokuGrid
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sudoku_Grid"/>

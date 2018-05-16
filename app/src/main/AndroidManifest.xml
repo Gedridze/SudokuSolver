@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.co.samuelpratt.sudoku">
+    package="uk.co.solveriai.sudoku">
 
     <application
         android:allowBackup="true"
@@ -8,17 +8,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="uk.co.solveriai.sudoku.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TakeAPictureActivity"/>
+        <activity android:name="uk.co.solveriai.sudoku.TakeAPictureActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="uk.co.samuelpratt.sudoku.fileprovider"
+            android:authorities="uk.co.solveriai.sudoku.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
