@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -41,7 +42,7 @@ public class TakeAPictureActivity extends Activity{
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                Log.e(null, "Error occurred while creating the File", ex);
+                Log.e(null, "Klaida kuriant failą", ex);
             }
             // Continue only if the File was successfully created
             Uri photoURI = null;
@@ -49,13 +50,13 @@ public class TakeAPictureActivity extends Activity{
                 try {
                     photoURI = FileProvider.getUriForFile(getApplicationContext(), "uk.co.solveriai.sudoku.fileprovider", photoFile);
                 } catch (Exception ex) {
-                    Log.e(null, "An error occurred getting the URI for the image file", ex);
+                    Log.e(null, "", ex);
                 }
                 try {
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 } catch (Exception ex) {
-                    Log.e(null, "An error occurred taking the picture", ex);
+                    Log.e(null, "Klaida fotografuojant", ex);
                 }
 
             }
@@ -88,7 +89,7 @@ public class TakeAPictureActivity extends Activity{
             updateImageTask.execute();
 
         } catch (Exception ex) {
-            Log.e(null, "Error extracting puzzle", ex);
+            Log.e(null, "Klaida atpazistant galvosuki", ex);
         }
     }
 
@@ -115,7 +116,6 @@ public class TakeAPictureActivity extends Activity{
         startActivity(mainActivityIntent);
     }
 
-    //Todo: need to work out a better way to do this as this is currently pretty nasty!
     void passPuzzleAndReturnToMainActivity(Integer[][] puzzle) {
 
         Bundle bundle = new Bundle();

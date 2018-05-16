@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:onClick="TakeAPicture"
-        android:text="Take a picture" />
+        android:text="Fotografuoti" />
 
     <Button
         android:id="@+id/SolvePuzzleButton"
@@ -40,5 +40,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:onClick="SolvePuzzle"
-        android:text="Solve Puzzle" />
+        android:text="Spręsti" />
 </LinearLayout>

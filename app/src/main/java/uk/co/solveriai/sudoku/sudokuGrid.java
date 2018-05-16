@@ -18,6 +18,10 @@ public class sudokuGrid extends View {
 
 
     private float scaleFactor;
+    Paint thickGridLine = new Paint();
+    Paint thinGridLine = new Paint();
+    Paint numberText = new Paint();
+    Paint thinNumberText = new Paint();
     public sudokuGrid(Context context){
         super(context);
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -40,9 +44,7 @@ public class sudokuGrid extends View {
         initPaints();
         setBackgroundColor(Color.rgb(255,255,153));
     }
-    Paint thickGridLine = new Paint();
-    Paint thinGridLine = new Paint();
-    Paint numberText = new Paint();
+
 
     private void initPaints(){
         thickGridLine.setColor(Color.BLACK);
@@ -52,9 +54,12 @@ public class sudokuGrid extends View {
         thinGridLine.setColor(Color.BLACK);
         thinGridLine.setStrokeWidth(Math.round(2));
         numberText.setTextSize((60*scaleFactor)/10);
+        thinNumberText.setTextSize((60*scaleFactor)/10);
+        thinNumberText.setColor(Color.GRAY);
     }
 
     Integer numbers[][] = new Integer[9][9];
+    Integer solvedPuzzle[][] = new Integer[9][9];
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -88,24 +93,36 @@ public class sudokuGrid extends View {
 
     public void generateNumbers(){
         for(int i = 0; i < 9; i++)
-            for(int j = 0; j < 9; j++)
+            for(int j = 0; j < 9; j++) {
                 numbers[i][j] = null;
+                solvedPuzzle[i][j] = null;
+            }
 
     }
 
-    public void fillGrid(Integer[][] values){
+    public void fillGrid(Integer[][] values, boolean solved){
         for(int i = 0; i < 9; i++)
-            for(int j = 0; j < 9; j++)
-                numbers[j][i]=values[j][i];
+            for(int j = 0; j < 9; j++) {
+                if (!solved) {
+                    numbers[j][i] = values[j][i];
+                    solvedPuzzle[j][i] = values[j][i];
+                }
+                else solvedPuzzle[j][i] = values[j][i];
+            }
         invalidate();
     }
 
     private void printNumbers(Canvas canvas){
         for(int i = 0; i < 9; i++)
-            for(int j = 0; j < 9; j++)
-                if(numbers[j][i] != null)
-                    canvas.drawText(Integer.toString(numbers[j][i]), (17 + 60 * j)*scaleFactor/10, (55 + 60 * i)*scaleFactor/10, numberText);
+            for(int j = 0; j < 9; j++) {
+                if (numbers[j][i] != null && numbers[j][i].equals(solvedPuzzle[j][i]))
+                    canvas.drawText(Integer.toString(solvedPuzzle[j][i]), (17 + 60 * j) * scaleFactor / 10, (55 + 60 * i) * scaleFactor / 10, numberText);
+                else if (solvedPuzzle[j][i] != null)
+                    canvas.drawText(Integer.toString(solvedPuzzle[j][i]), (17 + 60 * j) * scaleFactor / 10, (55 + 60 * i) * scaleFactor / 10, thinNumberText);
+            }
+
     }
+
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
